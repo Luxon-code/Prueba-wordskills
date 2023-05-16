@@ -1,0 +1,41 @@
+{% extends "index.html" %}
+{% block encabezado %}
+    {% include "encabezado.html" %}
+{%endblock %}
+{% block menu %}
+    {% include "menu.html" %}
+{%endblock %}
+{% block contenido %}
+    <h3 class="text-center mt-3">SISTEMA DE GESTION DE LIBROS</h3>
+    <div class="row" style="margin: 0 auto !important; width: 55%">
+        <div class="col-sm">
+          <div class="text-center">
+            <i class="bi bi-person-badge text-info" style="font-size: 8rem;"></i>
+          </div>
+          <div class="text-center fw-bold">Registrar Clientes</div>
+        </div>
+        <div class="col-sm">
+          <div class="text-center text-info" style="font-size: 8rem;">
+            <i class="bi bi-book-half"></i>
+          </div>
+      
+          <div class="text-center fw-bold">Registrar Libros</div>
+        </div>
+        <div class="col-sm">
+          <div class="text-center text-info" style="font-size: 8rem;">
+            <i class="bi bi-journal-plus"></i>
+          </div>
+      
+          <div class="text-center fw-bold">Registrar Prestamos</div>
+        </div>
+        <div class="col-sm" style="margin-bottom: 5rem;">
+          <div class="text-center text-info" style="font-size: 8rem;">
+            <i class="bi bi-list-check"></i>
+          </div>
+          <div class="text-center fw-bold">Ver Reportes</div>
+        </div>
+    </div>
+{%endblock %}
+{% block piePagina %}
+    {% include "piePagina.html" %}
+{%endblock %}

@@ -1,0 +1,86 @@
+{% extends "index.html" %}
+{% block encabezado %}
+    {% include "encabezado.html" %}
+{%endblock %}
+{% block menu %}
+    {% include "menu.html" %}
+{%endblock %}
+{% block contenido %}
+    <br>
+    <div class="d-flex justify-content-center align-items-center" style="margin-bottom: 7rem;">
+        <form id="frmRegistrarUsuario" action="/registrarPrestamo/" method="post" enctype="multipart/form-data" class="was-validated w-75">                   
+            {% csrf_token%}
+            <h3 class="text-center fw-bold">REGISTRAR PRESTAMO</h3>
+            <br>
+            <div class="form-group row">
+                <div class="mb-3 col-lg-6">
+                    <label for="txtFechaPrestamo" class="fw-bold">Fecha de Prestamo:</label>
+                    <input type="date" name="txtFechaPrestamo" class="form-control" id="txtFechaPrestamo" placeholder="Titulo del Libro" required> 
+                </div>
+                <div class="mb-3 col-lg-6">
+                    <label for="txtFechaEntrega" class="fw-bold">Fecha de entrega:</label>
+                    <input type="date" name="txtFechaEntrega" class="form-control" id="txtFechaEntrega" placeholder="Autor" required>
+                </div>
+            </div>
+            <div class="form-group row">                
+                <div class="mb-3 col-lg-6">
+                    <label for="cbCliente" class="fw-bold">Cliente:</label>              
+                    <select name="cbCliente" id="cbCliente" class="form-select" required>
+                        <option value="">Seleccione</option>
+                            {% for cliente in clientes %}
+                                <option value="{{cliente.id}}">{{cliente.cliNombre}} {{cliente.cliApellido}}</option>
+                            {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3 col-lg-6">
+                    <label for="cbLibro" class="fw-bold">Libro:</label>              
+                    <select name="cbLibro" id="cbLibro" class="form-select" required>
+                        <option value="">Seleccione</option>
+                            {% for libro in libros %}
+                                <option value="{{libro.id}}">{{libro.libNombre}}</option>
+                            {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-secondary">Registrar</button>
+                <a href="/"><button type="button" class="btn btn-danger mx-2">Cancelar</button></a>
+            </div>
+        </form>
+    </div>
+{%if mensaje %}
+    {%if estado %}
+        <script>
+            Swal.fire({
+                title: 'Registro de prestamo',
+                text: '{{mensaje}}',
+                icon: 'success',               
+                confirmButtonColor: '#3085d6',             
+                confirmButtonText: 'Aceptar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                
+                }
+            })
+        </script>
+    {%else %}
+        <script>
+            Swal.fire({
+                title: 'Registro de prestamo',
+                text: '{{mensaje}}',
+                icon: 'warning',                
+                confirmButtonColor: '#3085d6',             
+                confirmButtonText: 'Aceptar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                
+                }
+            })
+        </script>
+    {%endif%}
+{%endif %}  
+{%endblock %}
+{% block piePagina %}
+    {% include "piePagina.html" %}
+{%endblock %}

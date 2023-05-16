@@ -1,0 +1,52 @@
+{% extends "index.html" %}
+{% block encabezado %}
+    {% include "encabezado.html" %}
+{%endblock %}
+{% block menu %}
+    {% include "menu.html" %}
+{%endblock %}
+{% block contenido %}
+<br>
+<h3 class="text-center fw-bold">REPORTES DE PRESTAMOS</h3>
+
+<div class="w-75 table-responsive" style="margin: 0 auto; margin-bottom: 5rem;">
+    <br>
+    <br>
+    <table id="tblMateriales" class="table table-bordered table-hover">
+        <thead>
+            <tr class="text-center bg-info text-white">
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Titulo del libro</th>
+                <th>Fecha de prestamo</th>
+                <th>Fecha de entrega </th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prestamo in prestamos %}
+                <tr>
+                    <td>{{prestamo.preCodigo}}</td>
+                    <td>{{prestamo.preCliente.cliNombre}}</td>
+                    <td>{{prestamo.preCliente.cliApellido}}</td>
+                    <td>{{prestamo.preLibro.libNombre}}</td>
+                    <td>{{prestamo.preFechaPrestamo}}</td>
+                    <td>{{prestamo.preFechaEntrega}}</td>
+                    <td>{{prestamo.preEstado}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- The Modal -->
+
+
+<script>
+    cargarDataTable($("#tblMateriales"),"Elementos Materiales",5)
+</script>
+{%endblock %}
+{% block piePagina %}
+    {% include "piePagina.html" %}
+{%endblock %}

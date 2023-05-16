@@ -1,0 +1,64 @@
+{% extends "index.html" %}
+{% block encabezado %}
+    {% include "encabezado.html" %}
+{%endblock %}
+{% block menu %}
+    {% include "menu.html" %}
+{%endblock %}
+{% block contenido %}
+    <br>
+    <div class="d-flex justify-content-center align-items-center" style="margin-bottom: 7rem;">
+        <form id="frmRegistrarUsuario" action="/registrarCliente/" method="post" enctype="multipart/form-data" class="was-validated w-75">                   
+            {% csrf_token%}
+            <h3 class="text-center fw-bold">REGISTRAR CLIENTE</h3>
+            <br>
+            <div class="form-group row">
+                <div class="mb-3 col-lg-4">
+                    <label for="txtNombres" class="fw-bold">Nombres</label>
+                    <input type="text" name="txtNombres" class="form-control" id="txtNombres" placeholder="Nombre" required> 
+                </div>
+                <div class="mb-3 col-lg-4">
+                    <label for="txtApellidos" class="fw-bold">Apellidos</label>
+                    <input type="text" name="txtApellidos" class="form-control" id="txtApellidos" placeholder="Apellidos" required>
+                </div>
+                <div class="mb-3 col-lg-4">
+                    <label for="txtCorreo" class="fw-bold">Correo Electrónico</label>
+                    <input type="email" name="txtCorreo" class="form-control" id="txtCorreo" placeholder="correo Electrónico" required> 
+                </div>
+            </div>
+            <div class="form-group row">                
+                <div class="mb-3 col-lg-6">
+                    <label for="txtTelefono" class="fw-bold">Numero de telefono:</label>
+                    <input type="number" name="txtTelefono" class="form-control" id="txtTelefono" placeholder="Numero de telefono" required>
+                </div>
+                <div class="mb-3 col-lg-6">
+                    <label for="txtDireccion" class="fw-bold">Direccion:</label>
+                    <input type="text" name="txtDireccion" class="form-control" id="txtDireccion" placeholder="ej: calle 34 #11-12" required> 
+                </div>
+            </div>
+            <br>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-secondary">Registrar</button>
+                <a href="/"><button type="button" class="btn btn-danger mx-2">Cancelar</button></a>
+            </div>
+        </form>
+    </div>
+{%if mensaje %}
+<script>
+    Swal.fire({
+        title: 'Registro de Cliente',
+        text: '{{mensaje}}',
+        icon: 'success',               
+        confirmButtonColor: '#3085d6',             
+        confirmButtonText: 'Aceptar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+           
+        }
+    })
+</script>
+{%endif %}  
+{%endblock %}
+{% block piePagina %}
+    {% include "piePagina.html" %}
+{%endblock %}
